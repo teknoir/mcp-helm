@@ -13,10 +13,6 @@ spec:
       targetPort: 3001
       protocol: TCP
       name: http-mcp-alerts
-#    - port: 80
-#      targetPort: 3002
-#      protocol: TCP
-#      name: http-mcp-alerts-ext
 
 # For backward compatibility
 ---
@@ -36,7 +32,3 @@ spec:
       targetPort: 3001
       protocol: TCP
       name: http-mcp-alerts
-#    - port: 80
-#      targetPort: 3002
-#      protocol: TCP
-#      name: http-mcp-alerts-ext

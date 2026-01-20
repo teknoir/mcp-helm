@@ -50,33 +50,3 @@ spec:
 #                secretKeyRef:
 #                  name: mcp-mongo
 #                  key: password
-
-#        - name: mcp-alerts-ext
-#          image: "{{ .Values.imageExt.repository }}:{{ .Values.imageExt.tag }}"
-#          args: ["python", "-u", "main.py", "--external"]
-#          ports:
-#          - containerPort: 3002
-#            protocol: TCP
-#          imagePullPolicy: Always
-#          resources:
-#            requests:
-#              cpu: "100m"
-#              memory: "128Mi"
-#            limits:
-#              cpu: "2"
-#              memory: "2Gi"
-#          env:
-#            - name: MCP_MONGODB_URI
-#              valueFrom:
-#                secretKeyRef:
-#                  name: mcp-mongo
-#                  key: uri
-#            - name: HISTORIAN_MONGODB_URI
-#              valueFrom:
-#                secretKeyRef:
-#                  name: mongodb-credentials
-#                  key: service_uri
-#            - name: NAMESPACE
-#              value: {{ .Release.Namespace | quote }}
-#            - name: DOMAIN
-#              value: {{ .Values.domain | quote }}

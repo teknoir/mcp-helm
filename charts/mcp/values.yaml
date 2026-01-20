@@ -4,9 +4,9 @@ mcpAlerts:
   repository: us-central1-docker.pkg.dev/teknoir-mgmt/apps/mcp-poc-alerts
   tag: latest
 
-mcpAlertsEx:
-  repository: us-central1-docker.pkg.dev/teknoir-mgmt/apps/mcp-poc-alerts
-  tag: latest
+#mcpAlertsEx:
+#  repository: us-central1-docker.pkg.dev/teknoir-mgmt/apps/mcp-poc-alerts
+#  tag: latest
 
 mongo:
   image:
