@@ -19,7 +19,7 @@ spec:
     - destination:
         host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
         port:
-          number: 3001
+          number: 80
 
 # Not sure this is a good idea, handle OAuth for the whole platform here...
 

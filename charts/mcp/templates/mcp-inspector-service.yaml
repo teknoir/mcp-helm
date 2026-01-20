@@ -9,7 +9,7 @@ spec:
   selector:
     application: mcp-inspector
   ports:
-    - port: 8080
+    - port: 80
       targetPort: 6274
       protocol: TCP
       name: http-mcp-inspector

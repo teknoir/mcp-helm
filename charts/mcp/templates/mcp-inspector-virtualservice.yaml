@@ -14,7 +14,7 @@ spec:
         - destination:
             host: mcp-inspector.{{ .Release.Namespace }}.svc.cluster.local
             port:
-              number: 8080
+              number: 80
 
 #  - match:
 #    - uri:
