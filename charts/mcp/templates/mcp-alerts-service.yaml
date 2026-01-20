@@ -13,22 +13,3 @@ spec:
       targetPort: 3001
       protocol: TCP
       name: http-mcp-alerts
-
-# For backward compatibility
-#---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: mcp-poc-alerts
-#  namespace: {{ .Release.Namespace }}
-#  annotations:
-#    'teknoir.org/lifecycle': deprecated
-#spec:
-#  type: ClusterIP
-#  selector:
-#    application: mcp-alerts
-#  ports:
-#    - port: 3001
-#      targetPort: 3001
-#      protocol: TCP
-#      name: http-mcp-alerts

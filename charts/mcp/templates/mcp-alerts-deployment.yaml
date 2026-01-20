@@ -44,9 +44,3 @@ spec:
               value: {{ .Release.Namespace | quote }}
             - name: DOMAIN
               value: {{ .Values.domain | quote }}
-# TODO: Fix code to use URI instead of password
-#            - name: MONGO_PASSWORD
-#              valueFrom:
-#                secretKeyRef:
-#                  name: mcp-mongo
-#                  key: password

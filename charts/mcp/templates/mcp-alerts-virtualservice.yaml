@@ -1,3 +1,5 @@
+# For backward compatibility
+# Proxy and http://mcp-alerts/mcp should be used instead to connect to MCP Alerts server
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
@@ -8,76 +10,15 @@ spec:
   gateways:
   - teknoir/teknoir-gateway
   hosts:
-  - '{{- printf "mcp-alerts-%s.%s" .Release.Namespace .Values.domain -}}'
+  - '*'
   http:
   - match:
     - uri:
-        prefix: /mcp
-#    rewrite:
-#      uri: /
+        prefix: /{{ .Release.Namespace }}/mcp-alerts/
+    rewrite:
+      uri: /
     route:
     - destination:
         host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
         port:
           number: 80
-
-# Not sure this is a good idea, handle OAuth for the whole platform here...
-
-#  - match:
-#    - uri:
-#        prefix: /.well-known/
-#    route:
-#    - destination:
-#        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
-#        port:
-#          number: 80
-#  - match:
-#    - uri:
-#        prefix: /ext/{{ .Release.Namespace }}/mcp-alerts
-#    route:
-#    - destination:
-#        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
-#        port:
-#          number: 80
-
-# For backwards compatibility
-#---
-#apiVersion: networking.istio.io/v1beta1
-#kind: VirtualService
-#metadata:
-#  name: mcp-poc-alerts-vs
-#  namespace: {{ .Release.Namespace }}
-#  annotations:
-#    'teknoir.org/lifecycle': deprecated
-#spec:
-#  gateways:
-#  - teknoir/teknoir-gateway
-#  hosts:
-#  - '*'
-#  http:
-#  - match:
-#    - uri:
-#        prefix: /{{ .Release.Namespace }}/mcp-poc-alerts
-#    rewrite:
-#      uri: /
-#    route:
-#    - destination:
-#        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
-#        port:
-#          number: 3001
-##  - match:
-##    - uri:
-##        prefix: /.well-known/
-##    route:
-##    - destination:
-##        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
-##        port:
-##          number: 80
-##  - match:
-##    - uri:
-##        prefix: /ext/{{ .Release.Namespace }}/mcp
-##    route:
-##    - destination:
-##        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
-##        port:
-##          number: 80
