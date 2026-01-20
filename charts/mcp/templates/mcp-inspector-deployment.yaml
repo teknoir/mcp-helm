@@ -19,7 +19,7 @@ spec:
         - name: mcp-inspector
           image: {{ .Values.mcpInspector.repository }}:{{ .Values.mcpInspector.tag }}
           imagePullPolicy: Always
-          command: ["node", "client/bin/start.js", "--config", "/config.json", "--server", "everything"]
+          command: ["node", "client/bin/start.js", "--config", "/config/config.json", "--server", "everything"]
           ports:
           - containerPort: 6274
             protocol: TCP
@@ -30,16 +30,19 @@ spec:
             limits:
               cpu: "1"
               memory: "1Gi"
+          env:
+            - name: HOST
+              value: "0.0.0.0"
+            - name: MCP_AUTO_OPEN_ENABLED
+              value: "false"
           volumeMounts:
             - name: config-volume
-              mountPath: /config.json
-              subPath: config.json
+              mountPath: /config
       volumes:
         - name: config-volume
           configMap:
             name: mcp-inspector-config
-            items:
-              - key: config.json
+
 
 # docker run --rm \
 #  -p 127.0.0.1:6274:6274 \
