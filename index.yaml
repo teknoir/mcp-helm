@@ -3,6 +3,16 @@ entries:
   mcp:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-01-20T12:36:19.203694547Z"
+    description: Helm chart for deploying Model Context Protocol services.
+    digest: 6bb44be3914724795b719395e94b4befb60017ca421a93a45840996d05f926ef
+    name: mcp
+    type: application
+    urls:
+    - https://github.com/teknoir/mcp-helm/releases/download/mcp-0.0.9/mcp-0.0.9.tgz
+    version: 0.0.9
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-01-20T12:25:59.95090674Z"
     description: Helm chart for deploying Model Context Protocol services.
     digest: b05a71355bd6434d88d0ba0d8fa3f3b0ebb3fa2ac8e9ffea8a9c1a5a82257469
@@ -91,4 +101,4 @@ entries:
     urls:
     - https://github.com/teknoir/mcp-helm/releases/download/mcp-0.0.0-alpha-1/mcp-0.0.0-alpha-1.tgz
     version: 0.0.0-alpha-1
-generated: "2026-01-20T12:25:59.95095349Z"
+generated: "2026-01-20T12:36:19.203748818Z"
