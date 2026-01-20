@@ -1,0 +1,14 @@
+#---
+#apiVersion: security.istio.io/v1
+#kind: AuthorizationPolicy
+#metadata:
+#  name: allow-mcp-store-info
+#spec:
+#  selector:
+#    matchLabels:
+#      application: mcp-alerts
+#  action: ALLOW
+#  rules:
+#  - from:
+#    - source:
+#        namespaces: ["istio-system"]

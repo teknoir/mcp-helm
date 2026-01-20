@@ -1,0 +1,82 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-alerts
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: mcp-alerts
+  template:
+    metadata:
+      labels:
+        application: mcp-alerts
+    spec:
+      serviceAccountName: default-editor
+      containers:
+        - name: mcp-alerts
+          image: "{{ .Values.mcpAlerts.repository }}:{{ .Values.mcpAlerts.tag }}"
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 3001
+            protocol: TCP
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "2"
+              memory: "2Gi"
+          env:
+            - name: MCP_MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mcp-mongo
+                  key: uri
+            - name: HISTORIAN_MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-credentials
+                  key: service_uri
+            - name: NAMESPACE
+              value: {{ .Release.Namespace | quote }}
+            - name: DOMAIN
+              value: {{ .Values.domain | quote }}
+# TODO: Fix code to use URI instead of password
+#            - name: MONGO_PASSWORD
+#              valueFrom:
+#                secretKeyRef:
+#                  name: mcp-mongo
+#                  key: password
+
+#        - name: mcp-alerts-ext
+#          image: "{{ .Values.imageExt.repository }}:{{ .Values.imageExt.tag }}"
+#          args: ["python", "-u", "main.py", "--external"]
+#          ports:
+#          - containerPort: 3002
+#            protocol: TCP
+#          imagePullPolicy: Always
+#          resources:
+#            requests:
+#              cpu: "100m"
+#              memory: "128Mi"
+#            limits:
+#              cpu: "2"
+#              memory: "2Gi"
+#          env:
+#            - name: MCP_MONGODB_URI
+#              valueFrom:
+#                secretKeyRef:
+#                  name: mcp-mongo
+#                  key: uri
+#            - name: HISTORIAN_MONGODB_URI
+#              valueFrom:
+#                secretKeyRef:
+#                  name: mongodb-credentials
+#                  key: service_uri
+#            - name: NAMESPACE
+#              value: {{ .Release.Namespace | quote }}
+#            - name: DOMAIN
+#              value: {{ .Values.domain | quote }}

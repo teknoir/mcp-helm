@@ -1,1 +1,1 @@
-# mcp-helm
+charts/mcp/README.md
