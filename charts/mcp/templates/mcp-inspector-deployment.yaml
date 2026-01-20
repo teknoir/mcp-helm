@@ -35,6 +35,8 @@ spec:
               value: "0.0.0.0"
             - name: MCP_AUTO_OPEN_ENABLED
               value: "false"
+            - name: DANGEROUSLY_OMIT_AUTH
+              value: "true"
           volumeMounts:
             - name: config-volume
               mountPath: /config
