@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-inspector
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: mcp-inspector
+  template:
+    metadata:
+      labels:
+        application: mcp-inspector
+    spec:
+      serviceAccountName: default-editor
+      containers:
+        - name: mcp-inspector
+          image: {{ .Values.mcpInspector.repository }}:{{ .Values.mcpInspector.tag }}
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          env:
+            - name: PORT
+              value: "3000"
+

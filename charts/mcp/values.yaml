@@ -8,6 +8,11 @@ mcpAlerts:
 #  repository: us-central1-docker.pkg.dev/teknoir-mgmt/apps/mcp-poc-alerts
 #  tag: latest
 
+mcpInspector:
+  repository: mcpuse/inspector
+  tag: latest
+
+
 mongo:
   image:
     repository: mongo

@@ -1,0 +1,26 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: mcp-inspector-vs
+  namespace: {{ .Release.Namespace }}
+spec:
+  gateways:
+  - teknoir/teknoir-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /{{ .Release.Namespace }}/mcp-inspector
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: mcp-inspector.{{ .Release.Namespace }}.svc.cluster.local
+        port:
+          number: 3000
+      headers:
+        request:
+          add:
+            X-Forwarded-Prefix: /{{ .Release.Namespace }}/mcp-inspector
