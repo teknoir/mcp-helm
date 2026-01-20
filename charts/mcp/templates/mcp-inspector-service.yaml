@@ -10,6 +10,6 @@ spec:
     application: mcp-inspector
   ports:
     - port: 80
-      targetPort: 6274
+      targetPort: 8080
       protocol: TCP
       name: http-mcp-inspector

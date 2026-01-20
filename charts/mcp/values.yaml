@@ -9,7 +9,8 @@ mcpAlerts:
 #  tag: latest
 
 mcpInspector:
-  repository: ghcr.io/modelcontextprotocol/inspector
+#  repository: ghcr.io/modelcontextprotocol/inspector
+  repository: mcpuse/inspector
   tag: latest
 
 

@@ -19,9 +19,9 @@ spec:
         - name: mcp-inspector
           image: {{ .Values.mcpInspector.repository }}:{{ .Values.mcpInspector.tag }}
           imagePullPolicy: Always
-          command: ["node", "client/bin/start.js", "--config", "/config/config.json", "--server", "everything"]
+          #command: ["node", "client/bin/start.js", "--config", "/config/config.json", "--server", "everything"]
           ports:
-          - containerPort: 6274
+          - containerPort: 8080
             protocol: TCP
           resources:
             requests:

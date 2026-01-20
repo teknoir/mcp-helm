@@ -8,13 +8,13 @@ spec:
   gateways:
   - teknoir/teknoir-gateway
   hosts:
-  - '*'
+  - '{{- printf "mcp-alerts-%s.%s" .Release.Namespace .Values.domain -}}'
   http:
   - match:
     - uri:
-        prefix: /{{ .Release.Namespace }}/mcp-alerts/
-    rewrite:
-      uri: /
+        prefix: /mcp
+#    rewrite:
+#      uri: /
     route:
     - destination:
         host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local

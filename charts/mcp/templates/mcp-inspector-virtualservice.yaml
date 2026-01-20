@@ -1,8 +1,7 @@
----
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: mcp-inspector-vs
+  name: mcp-alerts-vs
   namespace: {{ .Release.Namespace }}
 spec:
   gateways:
@@ -10,11 +9,44 @@ spec:
   hosts:
   - '{{- printf "mcp-inspector-%s.%s" .Release.Namespace .Values.domain -}}'
   http:
-    - route:
+  - match:
+    - uri:
+        prefix: /mcp
+#    rewrite:
+#      uri: /
+    route:
+    - destination:
+        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
+        port:
+          number: 80
+    - match:
+        - uri:
+            prefix:
+              /
+      route:
         - destination:
             host: mcp-inspector.{{ .Release.Namespace }}.svc.cluster.local
             port:
               number: 80
+
+
+#---
+#apiVersion: networking.istio.io/v1beta1
+#kind: VirtualService
+#metadata:
+#  name: mcp-inspector-vs
+#  namespace: {{ .Release.Namespace }}
+#spec:
+#  gateways:
+#  - teknoir/teknoir-gateway
+#  hosts:
+#  - '{{- printf "mcp-inspector-%s.%s" .Release.Namespace .Values.domain -}}'
+#  http:
+#    - route:
+#        - destination:
+#            host: mcp-inspector.{{ .Release.Namespace }}.svc.cluster.local
+#            port:
+#              number: 80
 
 #  - match:
 #    - uri:
