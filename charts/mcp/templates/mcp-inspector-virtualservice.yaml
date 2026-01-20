@@ -8,19 +8,25 @@ spec:
   gateways:
   - teknoir/teknoir-gateway
   hosts:
-  - '*'
+  - '{{- printf "mcp-inspector-%s.%s" .Release.Namespace .Values.domain -}}'
   http:
-  - match:
-    - uri:
-        prefix: /{{ .Release.Namespace }}/mcp-inspector/
-    rewrite:
-      uri: /
-    route:
-    - destination:
-        host: mcp-inspector.{{ .Release.Namespace }}.svc.cluster.local
-        port:
-          number: 8080
-      headers:
-        request:
-          add:
-            X-Forwarded-Prefix: /{{ .Release.Namespace }}/mcp-inspector/
+    - route:
+        - destination:
+            host: mcp-inspector.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: 8080
+
+#  - match:
+#    - uri:
+#        prefix: /{{ .Release.Namespace }}/mcp-inspector/
+#    rewrite:
+#      uri: /
+#    route:
+#    - destination:
+#        host: mcp-inspector.{{ .Release.Namespace }}.svc.cluster.local
+#        port:
+#          number: 8080
+#      headers:
+#        request:
+#          add:
+#            X-Forwarded-Prefix: /{{ .Release.Namespace }}/mcp-inspector/
