@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: mcp-alerts-vs
+  name: mcp-inspector-vs
   namespace: {{ .Release.Namespace }}
 spec:
   gateways:
