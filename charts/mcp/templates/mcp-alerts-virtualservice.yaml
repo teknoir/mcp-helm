@@ -41,43 +41,43 @@ spec:
 #          number: 80
 
 # For backwards compatibility
----
-apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
-metadata:
-  name: mcp-poc-alerts-vs
-  namespace: {{ .Release.Namespace }}
-  annotations:
-    'teknoir.org/lifecycle': deprecated
-spec:
-  gateways:
-  - teknoir/teknoir-gateway
-  hosts:
-  - '*'
-  http:
-  - match:
-    - uri:
-        prefix: /{{ .Release.Namespace }}/mcp-poc-alerts
-    rewrite:
-      uri: /
-    route:
-    - destination:
-        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
-        port:
-          number: 3001
+#---
+#apiVersion: networking.istio.io/v1beta1
+#kind: VirtualService
+#metadata:
+#  name: mcp-poc-alerts-vs
+#  namespace: {{ .Release.Namespace }}
+#  annotations:
+#    'teknoir.org/lifecycle': deprecated
+#spec:
+#  gateways:
+#  - teknoir/teknoir-gateway
+#  hosts:
+#  - '*'
+#  http:
 #  - match:
 #    - uri:
-#        prefix: /.well-known/
+#        prefix: /{{ .Release.Namespace }}/mcp-poc-alerts
+#    rewrite:
+#      uri: /
 #    route:
 #    - destination:
 #        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
 #        port:
-#          number: 80
-#  - match:
-#    - uri:
-#        prefix: /ext/{{ .Release.Namespace }}/mcp
-#    route:
-#    - destination:
-#        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
-#        port:
-#          number: 80
+#          number: 3001
+##  - match:
+##    - uri:
+##        prefix: /.well-known/
+##    route:
+##    - destination:
+##        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
+##        port:
+##          number: 80
+##  - match:
+##    - uri:
+##        prefix: /ext/{{ .Release.Namespace }}/mcp
+##    route:
+##    - destination:
+##        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
+##        port:
+##          number: 80
