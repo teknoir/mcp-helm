@@ -9,14 +9,14 @@ spec:
   hosts:
   - '{{- printf "mcp-inspector-%s.%s" .Release.Namespace .Values.domain -}}'
   http:
-  - match:
-    - uri:
-        prefix: /mcp
-    route:
-    - destination:
-        host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
-        port:
-          number: 80
+    - match:
+      - uri:
+          prefix: /mcp
+      route:
+      - destination:
+          host: mcp-alerts.{{ .Release.Namespace }}.svc.cluster.local
+          port:
+            number: 80
     - match:
         - uri:
             prefix:
