@@ -12,7 +12,7 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /{{ .Release.Namespace }}/mcp-inspector
+        prefix: /{{ .Release.Namespace }}/mcp-inspector/
     rewrite:
       uri: /
     route:
@@ -23,4 +23,4 @@ spec:
       headers:
         request:
           add:
-            X-Forwarded-Prefix: /{{ .Release.Namespace }}/mcp-inspector
+            X-Forwarded-Prefix: /{{ .Release.Namespace }}/mcp-inspector/
