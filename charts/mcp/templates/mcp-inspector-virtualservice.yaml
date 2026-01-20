@@ -19,7 +19,7 @@ spec:
     - destination:
         host: mcp-inspector.{{ .Release.Namespace }}.svc.cluster.local
         port:
-          number: 3000
+          number: 8080
       headers:
         request:
           add:

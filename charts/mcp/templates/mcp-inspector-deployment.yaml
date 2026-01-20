@@ -20,7 +20,7 @@ spec:
           image: {{ .Values.mcpInspector.repository }}:{{ .Values.mcpInspector.tag }}
           imagePullPolicy: Always
           ports:
-          - containerPort: 3000
+          - containerPort: 8080
             protocol: TCP
           resources:
             requests:
@@ -29,7 +29,3 @@ spec:
             limits:
               cpu: "1"
               memory: "1Gi"
-          env:
-            - name: PORT
-              value: "3000"
-
